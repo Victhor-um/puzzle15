@@ -3,9 +3,16 @@ console.log('🚀 ~ file: index.js:2 ~ panel', panel);
 const gameField = document.querySelector('.gameField ');
 console.log('🚀 ~ file: index.js:4 ~ gameField', gameField);
 let clicks;
+let time = 0;
+let firstStep = false;
+
 generateRandomGameField();
 function generateRandomGameField() {
   clicks = 0;
+  time = 0;
+  if (firstStep) {
+    clearInterval(timerId);
+  }
   panel.children[0].lastChild.textContent = clicks;
   const oldTable = gameField.querySelector('table');
   oldTable.remove();
@@ -44,6 +51,13 @@ const restartButton = document.querySelector('#restart');
 restartButton.addEventListener('click', generateRandomGameField);
 
 gameField.onclick = function (event) {
+  if (!firstStep) {
+    firstStep = true;
+    let timerId = setInterval(() => {
+      if (panel.children[1].lastChild.textContent)
+        panel.children[1].lastChild.textContent = time++;
+    }, 1000);
+  }
   console.log('🚀 ~ file: index.js:47 ~ panel', panel);
   const target = event.target.closest('td');
   console.log('🚀 ~ file: index.js:47 ~ target INNER TEXT', target.innerText);
