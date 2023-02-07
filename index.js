@@ -2,9 +2,11 @@ const panel = document.querySelector('.panel');
 console.log('🚀 ~ file: index.js:2 ~ panel', panel);
 const gameField = document.querySelector('.gameField ');
 console.log('🚀 ~ file: index.js:4 ~ gameField', gameField);
+let clicks;
 generateRandomGameField();
-
 function generateRandomGameField() {
+  clicks = 0;
+  panel.children[0].lastChild.textContent = clicks;
   const oldTable = gameField.querySelector('table');
   oldTable.remove();
   let NUMBERS_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, null];
@@ -42,10 +44,14 @@ const restartButton = document.querySelector('#restart');
 restartButton.addEventListener('click', generateRandomGameField);
 
 gameField.onclick = function (event) {
+  console.log('🚀 ~ file: index.js:47 ~ panel', panel);
   const target = event.target.closest('td');
   console.log('🚀 ~ file: index.js:47 ~ target INNER TEXT', target.innerText);
   const trueNums = findEmptyElement(gameField);
   if (trueNums.some((elem) => elem === target.innerText)) {
+    clicks += 1;
+    if (panel.children[0].lastChild.textContent)
+      panel.children[0].lastChild.textContent = clicks;
     console.log('TRUE NUMS WORKS: HA HA');
     wasteElement;
     console.log('🚀 ~ file: index.js:53 ~ wasteElement', wasteElement);
