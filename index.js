@@ -5,7 +5,7 @@ console.log('🚀 ~ file: index.js:4 ~ gameField', gameField);
 let clicks;
 let time = 0;
 let firstStep = false;
-
+let timerId;
 generateRandomGameField();
 function generateRandomGameField() {
   clicks = 0;
