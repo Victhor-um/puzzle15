@@ -55,7 +55,7 @@ gameField.onclick = function (event) {
     firstStep = true;
     let timerId = setInterval(() => {
       if (panel.children[1].lastChild.textContent)
-        panel.children[1].lastChild.textContent = time++;
+        panel.children[1].lastChild.textContent = `${time++}s`;
     }, 1000);
   }
   console.log('🚀 ~ file: index.js:47 ~ panel', panel);
